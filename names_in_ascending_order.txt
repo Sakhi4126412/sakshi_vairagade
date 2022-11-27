@@ -1,0 +1,28 @@
+#creating table
+
+
+create table employee_name
+(
+employee_id int,
+names varchar(10),
+months int,
+salary int
+);
+
+#inserting data in table
+
+insert into  employee_name value(12228,'rose',15,1968),
+(33645,'angela',1,3443),
+(45692,'frank',17,1608),
+(56118,'patrick',7,1345),
+(59725,'lisa',11,2330),
+(74197,'kimberly',16,4372),
+(78454,'bonnie',8,1771),
+(83565,'michael',6,2017),
+(98607,'todd',5,3396),
+(99989,'joe',9,3573);
+
+#commands to order by names in asscending order
+
+select names from employee_name
+order by names;

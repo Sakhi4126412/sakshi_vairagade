@@ -1,0 +1,23 @@
+# creating table
+
+create table symmetric_pair
+(
+    X int,
+    Y int
+);
+
+
+#inserting data in table
+
+ insert into symmetric_pair values(20,20),(20,20),(20,21),(23,22),(22,23),(21,20);
+
+
+# commands to print symmetric pairs
+
+SELECT X1.X, X1.Y FROM  symmetric_pair AS X1 
+WHERE X1.X = X1.Y AND
+(SELECT COUNT(*) FROM symmetric_pair WHERE X = X1.X AND Y = X1.Y) > 1
+UNION
+SELECT X1.X, X1.Y from symmetric_pair AS X1
+WHERE EXISTS(SELECT X, Y FROM symmetric_pair WHERE X1.X = Y AND X1.Y = X AND X1.X < X)
+ORDER BY X;

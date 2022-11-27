@@ -1,0 +1,33 @@
+#create a table
+
+create table occupation
+(
+    names varchar(20),
+    occupation VARCHAR(20)
+);
+
+#inserting data in table
+
+insert into occupation value('Samantha','Doctor'),
+('Julia','Actor'),
+('Maria','Actor'),
+('Meera','Singer'),
+('Ashley','Professor'),
+('Ketty','Professor'),
+('Christeen','Proferssor'),
+('Jane','Actor'),
+('Jenny','Actor'),
+('Priya','singer');
+
+#first query first letter of each profession as a parenthetical
+
+SELECT CONCAT(names,'(',LEFT(OCCUPATION, 1),')') 
+FROM occupation 
+ORDER BY names;
+
+#second query number of coourances of an occupation
+
+SELECT CONCAT('There are a total of ', COUNT(*), ' ', LOWER(OCCUPATION), 's.') 
+FROM occupation 
+GROUP BY occupation 
+ORDER BY COUNT(*), occupation;

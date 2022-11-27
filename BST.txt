@@ -1,0 +1,22 @@
+#creating BST table for nodes
+
+create table Binary_tree
+(
+   N int,
+    P int
+);
+ #inserting data in binary_tree table
+
+insert into Binary_tree value(1,2),(3,2),(6,8),(9,8),(2,5),(8,5),(5,null);
+ 
+
+ #sql commands on required conditions
+
+SELECT N,
+CASE
+WHEN P IS NULL THEN 'Root' 
+WHEN N IN (SELECT P FROM Binary_tree) THEN 'Inner'
+ELSE 'Leaf'
+END as nodes
+FROM Binary_tree
+ORDER by N;

@@ -1,0 +1,74 @@
+#creating COMPANY table
+
+create table companies
+(
+    company_code varchar(20),
+    founder varchar(20)
+);
+
+#inserting data
+
+iNsert into companies value('C1','MONIKA'),('C2','SAMANTHA');
+
+#creating LEAD MANAGER TABLE
+
+CREATE TABLE lead_manager
+(
+    lead_manager_code varchar(20),
+    company_code varchar(20)
+);
+
+#inserting data
+
+insert into lead_manager values('LM1','C1'),('LM2','C2');
+
+#CREATING SENIOR MANAGER TABLE
+
+CREATE TABLE senior_manager
+(
+    senior_manager_code varchar(20),
+    lead_manager_code varchar(20),
+    company_code varchar(20)
+);
+
+#inserting data
+
+insert into senior_manager value('SM1','LM1','C1'),('SM2','LM1','C1'),('SM3','LM2','C2');
+
+# CREATING MANAGER table
+
+CREATE TABLE manager
+(
+    manager_code varchar(20),
+    senior_manager_code varchar(20),
+    lead_manager_code varchar(20),
+    company_code varchar(20)
+);
+ #inserting data2
+INSERT INTO manager value('M1','SM1','LM1','C1'),('M2','SM3','LM2','C2'),('M3','SM3','LM2','C2');
+
+#createing EMPLOYEE table
+
+ CREATE TABLE IF NOT EXISTS employee
+ (
+    employee_code varchar(20),
+    manager_code varchar(20),
+    senior_manager_code varchar(20),
+    lead_manager_code varchar(20),
+    company_code varchar(20)
+ );
+
+#inserting data
+ insert into employee value('E1','M1','SM1','LM1','C1'),('E2','M1','SM1','LM1','C1'),('E3','M2','SM3','LM2','C2'),('E4','M3','SM3','LM2','C2');
+
+ 
+#commands as per required conditions
+
+SELECT c.company_code, c.founder,
+  COUNT(DISTINCT e.lead_manager_code), 
+  COUNT(DISTINCT e.senior_manager_code), 
+  COUNT(DISTINCT e.manager_code), 
+  COUNT(DISTINCT e.employee_code) FROM companies c
+JOIN employee e ON c.company_code = e.company_code 
+GROUP BY c.company_code, c.founder 
+ORDER BY c.company_code;

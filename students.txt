@@ -1,0 +1,11 @@
+use assignment;
+CREATE TABLE students
+(
+    id int,
+    name varchar (10),
+    marks INT
+
+);
+insert into students value(1,'Ashley',81),(2,'samantha',75),(3,'julia',76),(4,'belvet',84);
+select name from students
+where marks >75;
